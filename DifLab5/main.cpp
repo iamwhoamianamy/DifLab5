@@ -1,5 +1,6 @@
 ﻿#include <fstream>
 #include <iostream>
+#include <string>
 #include "Vector.h"
 #include "adams.h"
 #include "runge.h"
@@ -14,33 +15,50 @@ void report(const string file_name,
    ofstream fout;
    double kp = 0, kq = 0;
 
-   fout.open(path + file_name);
+   fout.open(path + "info.txt");
+   for (int i = 0; i < H.size(); i++)
+      fout << log10(H[i]) << " ";
+   fout.close();
 
    for (int i = 0; i < H.size(); i++)
    {
+      string path0 = path + file_name + "_1e" + to_string((int)log10(H[i]));
+      fout.open(path0 + ".txt");
       vector<double> T = fill_grid(t0, tn, H[i]);
 
-      vector<vector<double>> Y = method(T, H[i], f);
+      vector<vector<double>> Y_num = method(T, H[i], f);
       vector<vector<double>> Y_anl = y_analysis(T, H[i], analyt_1);
-      output(fout, T, H[i], Y, Y_anl);
+      output(fout, T, H[i], Y_num, Y_anl);
 
       vector<double> Y_anl_tn = analyt_1(tn);
 
-      double tp = abs(Y[Y.size() - 1][0] - Y_anl_tn[0]);
+      double tp = abs(Y_num[Y_num.size() - 1][0] - Y_anl_tn[0]);
       fout << fixed << "kp = " << kp / tp << endl;
 
-      double tq = abs(Y[Y.size() - 1][1] - Y_anl_tn[1]);
+      double tq = abs(Y_num[Y_num.size() - 1][1] - Y_anl_tn[1]);
       fout << fixed << "kq = " << kq / tq << endl << endl;
 
       kp = tp;
       kq = tq;
-   }
 
-   fout.close();
+      fout.close();
+
+      fout.open(path0 + "_vals.txt");
+
+      int size = T.size();
+      for (int j = 0; j < size; j++)
+      {
+         fout << T[j] << ",";
+         fout << Y_num[j][0] << ",";
+         fout << Y_num[j][1] << endl;
+      }
+
+      fout.close();
+   }
 }
 
 int main()
 {
-   report("euler1.txt", euler1);
-   report("adams3.txt", adams3_exp);
+   //report("euler1.txt", euler1);
+   report("adams3", adams3_exp);
 }

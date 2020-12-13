@@ -10,7 +10,7 @@ q0 = 0.001, l = 1.0, d = 0.01, ro = 1000, Csnd = 1260,
 z = 1 - cos(PI / 4), t0 = 0.0, tn = 10.0;
 const int K = 10000;
 const string path = "reports/";
-const vector<double> H = { 1e-0, 1e-1, 1e-2, 1e-3, 1e-4, 1e-5 };
+const vector<double> H = { 1e-0, 1e-1, 1e-2, 1e-3, 1e-4 };
 
 const double S = PI * d * d / 4.0;
 const double C = l * S / (ro * Csnd * Csnd);
