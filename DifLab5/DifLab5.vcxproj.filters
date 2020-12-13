@@ -23,5 +23,14 @@
     <ClInclude Include="DifLab.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="runge.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="adams.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
