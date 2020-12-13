@@ -5,7 +5,8 @@
 
 using namespace std;
 
-inline vector<double> kn1(const double tn, const vector<double>& yn, vector<double> func(const double, const vector<double>&))
+inline vector<double> kn1(const double tn, const vector<double>& yn,
+   vector<double> func(const double, const vector<double>&))
 {
    return func(tn, yn);
 }
