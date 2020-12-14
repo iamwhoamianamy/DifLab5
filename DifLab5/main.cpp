@@ -46,6 +46,7 @@ void report(const string file_name,
       fout.open("values/" + filename_e + "_vals.txt");
 
       int size = T.size();
+
       for (int j = 0; j < size; j++)
       {
          fout << T[j] << ",";
@@ -59,5 +60,6 @@ void report(const string file_name,
 
 int main()
 {
-   report("adams3", adams3_exp);
+   //report("adams3", adams3_exp);
+   report("runge", runge);
 }

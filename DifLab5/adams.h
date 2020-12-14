@@ -37,3 +37,22 @@ vector<vector<double>> adams3_exp(const vector<double>& T,
 
    return res;
 }
+
+vector<vector<double>> runge(const vector<double>& T,
+   const double h,
+   vector<double> func(const double, const vector<double>&))
+{
+   int N = T.size();
+   vector<vector<double>> res(N);
+
+   for (int i = 0; i < N; i++)
+      res[i].resize(2);
+
+   res[0][0] = patm;
+   res[0][1] = 0.0;
+
+   for (int n = 1; n < N; n++)
+      res[n] = runge_n(n, T, h, res, func);;
+
+   return res;
+}
